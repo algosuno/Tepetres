@@ -1,6 +1,6 @@
-Repositorio TP3
+# Repositorio TP3
 
-Convicciones (Avisame si te parecen bien):
+# Convicciones (Avisame si te parecen bien):
 	-Si hacemos correcciones se hacen sobre el mismo archivo (Solo si se
 	esta seguro que no afectara al funcionamiento)
 	-Si se hace una modificacion o prueba mas importante se aumenta en 1
