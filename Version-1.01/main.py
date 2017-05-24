@@ -5,6 +5,7 @@ class Shell(cmd.Cmd, object):
     intro='Bienvenido al reproductor, ? para ver comandos, help COMANDO para obtener ayuda'
     prompt='*>>'
     def __init__(self):
+        cmd.Cmd.__init__(self)
         self.archivo=None
         self.editor=None
 #-----------------------MANEJO DE ARCHIVOS---------------------------#
@@ -21,7 +22,7 @@ class Shell(cmd.Cmd, object):
         self.archivo.leer()
         self.archivo.conversion()
         self.archivo.agregar_objeto()
-        self.editor=Editor(a)
+        self.editor=Editor(self.archivo)
         self.editor.representar_cancion()
 
     def do_STORE(self,archivo):
