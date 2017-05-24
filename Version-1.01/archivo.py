@@ -40,13 +40,11 @@ class Archivo:
     def convertir_objeto(self, lista):
         frequency=float(lista[1])
         volume=float(lista[2])
-        if lista[0][0:2]=='SQ':
-            sonido=pysounds.SoundFactory.get_square_sound(frequency, volume)
-        elif lista[0]=='TRIA':
-            sonido=pysounds.SoundFactory.get_triangular_sound(frequency,volume)
-        else:
-            sonido=pysounds.SoundFactory.get_sine_sound(frequency, volume)
-        return sonido
+        funciones={'SQ':pysounds.SoundFactory.get_square_sound,
+                   'TR':pysounds.SoundFactory.get_square_sound,
+                   'SI':pysounds.SoundFactory.get_square_sound,
+                   'NO':pysounds.SoundFactory.get_square_sound}
+        return funciones[lista[0][0:2]](frequency,volume)
 #---------------------------------------------------------------------#
     def conversion(self):
         for s in self.sonidos:
