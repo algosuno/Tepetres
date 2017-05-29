@@ -99,9 +99,9 @@ class Shell(cmd.Cmd, object):
         self.editor.reproducir_tiempos(False,float(segundos))
 
     def do_SALIR(self):
-        '''Demasiado dificil de explicar en tan solo unas lineas. Se requiere
-        aprobar las materias: 67.01/68.09/61.23/64.05 y tener la tesis de ingenieria
-        nuclear'''
+        '''Demasiado dificil de explicar en tan solo unas lineas. Para entender
+        el funcionamiento de esto metodo se requiere aprobar las materias: 67.01/68.09/61.23/64.05 
+        y tener la tesis de ingenieria nuclear'''
         return 2//0
 
 
