@@ -1,15 +1,29 @@
 from ListaEnlazada import ListaEnlazada
 import soundPlayer as pysounds
 from tiempo import Tiempo
+
 class Archivo:
+    '''Clase que maneja los objetos archivos. Posee los atributos archivo, tiempo
+    sonidos, canales y objeto_sonido. Tiene los metodos leer(),convertir_a_objeto(),
+    conversion(),agregar_objeto(),reproducir(),reproducir_tiempos(),obtener_datos().'''
+    
+#---------------------------------------------------------------------# 
+    
     def __init__(self,archivo):
+        '''Entra como parametro un nobre de un archivo y crea el estado inicial
+        de un objeto archivo'''
         self.archivo=archivo
         self.tiempos=ListaEnlazada()
         self.sonidos=ListaEnlazada()
         self.canales=0
         self.objeto_sonidos=ListaEnlazada()
+        
 #---------------------------------------------------------------------#
+   
     def leer(self):
+        '''Abre el archivo en modo lectura y lee. Modifica los atributos
+        canales, tiempos y sonido.
+        Pre: El archivo esta en formato plp'''
         with open(self.archivo) as plp:
             linea=plp.readline()
             linea=linea.rstrip('\n').split(',')
@@ -36,8 +50,13 @@ class Archivo:
                     continue
                 linea=plp.readline()
                 linea=linea.rstrip('\n').split(',')
+                
 #---------------------------------------------------------------------#
+
     def convertir_objeto(self, lista):
+        '''Entra como parametro una lista y devuelve un objeto sonido sonido
+        obtenido de la clase ''. #nombre de la clase 
+        Pre: La lista contiene digitos'''
         frequency=float(lista[1])
         volume=float(lista[2])
         funciones={'SQ':pysounds.SoundFactory.get_square_sound,
@@ -47,6 +66,7 @@ class Archivo:
         return funciones[lista[0][0:2]](frequency,volume)
 #---------------------------------------------------------------------#
     def conversion(self):
+        '''con'''
         for s in self.sonidos:
             sonido=self.convertir_objeto(s)
             self.objeto_sonidos.append(sonido)
@@ -65,9 +85,10 @@ class Archivo:
                 #else:
                     #t.agregar_nota_obj(None) - Este codigo esta comentado porque no se si va
 #---------------------------------------------------------------------#
+    
     def reproducir(self):
         sp=pysounds.SoundPlayer(2)
-        a_reproducir=[]
+        a_reproducir=[]d
         for t in self.tiempos: #me parece que esta implementacion va a tardar
                               # Si tarda creamos una funcion que obtenga la nota y el tiempo antes
             notas=t.obtener_nota_obj()
@@ -78,6 +99,8 @@ class Archivo:
             sp.play_sounds(nota,tiempo)
 
         sp.close()
+        
+#---------------------------------------------------------------------#
 
     def reproducir_tiempos(self,lista_tiempos=False,segundos=False):
         sp=pysounds.SoundPlayer(2)
@@ -86,7 +109,7 @@ class Archivo:
             lista_tiempos=self.tiempos
         if not segundos:
             for t in lista_tiempos:
-                print('caca')
+                print('caca') #buena forma de ver donde esta el error jajajajaj
                 notas=t.obtener_nota_obj()
                 tiempo=t.obtener_tiempo()
                 a_reproducir.append((notas,tiempo))
