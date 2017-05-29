@@ -53,7 +53,7 @@ class Archivo:
                 
 #---------------------------------------------------------------------#
 
-    def convertir_objeto(self, lista):
+    def convertir_objeto(self, lista): #convertir_obj_son(buen nombre?)
         '''Entra como parametro una lista y devuelve un objeto sonido sonido
         obtenido de la clase ''. #nombre de la clase 
         Pre: La lista contiene digitos'''
@@ -64,14 +64,21 @@ class Archivo:
                    'SI':pysounds.SoundFactory.get_square_sound,
                    'NO':pysounds.SoundFactory.get_square_sound}
         return funciones[lista[0][0:2]](frequency,volume)
+    
 #---------------------------------------------------------------------#
-    def conversion(self):
-        '''con'''
+
+    def conversion(self): 
+        '''Modifica el atributo objeto_sonidos agregandole al mismo objetos
+        de la clase ''.'''
         for s in self.sonidos:
             sonido=self.convertir_objeto(s)
             self.objeto_sonidos.append(sonido)
+            
 #---------------------------------------------------------------------#
+
     def agregar_objeto(self):
+        '''Agrega al atributo tiempos los sonidos correspondientes que son los
+        que deberan sonar'''
         lista=list(self.objeto_sonidos)
         for t in self.tiempos:
             nota=t.obtener_nota()
@@ -87,6 +94,7 @@ class Archivo:
 #---------------------------------------------------------------------#
     
     def reproducir(self):
+        '''Reproduce todas las notas con sus respectivos tiempos'''
         sp=pysounds.SoundPlayer(2)
         a_reproducir=[]d
         for t in self.tiempos: #me parece que esta implementacion va a tardar
@@ -103,6 +111,8 @@ class Archivo:
 #---------------------------------------------------------------------#
 
     def reproducir_tiempos(self,lista_tiempos=False,segundos=False):
+        '''Toma como parametro una  lista_tiempos y/o segundos los cuales se
+        van reproducir'''
         sp=pysounds.SoundPlayer(2)
         a_reproducir=[]
         if not lista_tiempos:
@@ -129,6 +139,9 @@ class Archivo:
             sp.play_sounds(nota,tiempo)
 
         sp.close()
+        
 #---------------------------------------------------------------------#
+
     def obtener_datos(self):
+        '''Devuleve los atributos tiempo, sonidos y canales'''
         return self.tiempos,self.sonidos,self.canales
